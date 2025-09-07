@@ -68,8 +68,3 @@ window.onload=()=>{
     showSection('inbox');
   } else showSection('auth');
 };
-
-
-window.onload = () => {
-  if(document.getElementById('inbox')) loadInbox();
-};
