@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Calls</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="inbox.html">Inbox</a>
+      <a href="compose.html">Compose</a>
+    </nav>
+    <h2>Calls</h2>
+    <input id="callTo" placeholder="Call username">
+    <button onclick="startCall()">Call</button>
+    <div class="call-controls">
+      <button onclick="enableMic()">Mic On</button>
+      <button onclick="disableMic()">Mic Off</button>
+      <button onclick="enableCam()">Cam On</button>
+      <button onclick="disableCam()">Cam Off</button>
+      <button onclick="endCall()">End Call</button>
+    </div>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+  </div>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="call.js"></script>
+</body>
+</html>
