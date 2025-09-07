@@ -17,3 +17,9 @@ CREATE TABLE messages (
   created_at timestamptz DEFAULT now(),
   is_read boolean DEFAULT false
 );
+
+-- Тестовые пользователи
+INSERT INTO users (username, email, password_hash)
+VALUES 
+('alice','alice@skymail.com',crypt('123456', gen_salt('bf'))),
+('bob','bob@skymail.com',crypt('123456', gen_salt('bf')));
