@@ -1,20 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>SkyMail Login</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>SkyMail</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+<div class="container">
+
+  <nav id="nav" style="display:none;">
+    <button onclick="showSection('inbox')">Inbox</button>
+    <button onclick="showSection('compose')">Compose</button>
+    <button onclick="showSection('calls')">Calls</button>
+    <button onclick="logout()">Logout</button>
+  </nav>
+
+  <!-- Login/Register -->
+  <section id="auth">
     <h1>SkyMail</h1>
-    <div id="auth">
-      <input id="username" placeholder="Username">
-      <input id="password" type="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <button onclick="register()">Register</button>
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="register()">Register</button>
+    <button onclick="login()">Login</button>
+  </section>
+
+  <!-- Inbox -->
+  <section id="inbox" style="display:none;">
+    <h2>Inbox</h2>
+    <div id="messages"></div>
+  </section>
+
+  <!-- Compose -->
+  <section id="compose" style="display:none;">
+    <h2>Compose</h2>
+    <input id="to" placeholder="Recipient username">
+    <input id="subject" placeholder="Subject">
+    <textarea id="body" placeholder="Message"></textarea>
+    <button onclick="send()">Send</button>
+  </section>
+
+  <!-- Calls -->
+  <section id="calls" style="display:none;">
+    <h2>Calls</h2>
+    <input id="callTo" placeholder="Call username">
+    <button onclick="startCall()">Call</button>
+    <div class="call-controls">
+      <button onclick="enableMic()">Mic On</button>
+      <button onclick="disableMic()">Mic Off</button>
+      <button onclick="enableCam()">Cam On</button>
+      <button onclick="disableCam()">Cam Off</button>
+      <button onclick="endCall()">End Call</button>
     </div>
-  </div>
-  <script src="app.js"></script>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+  </section>
+
+</div>
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="app.js"></script>
+<script src="call.js"></script>
 </body>
 </html>
