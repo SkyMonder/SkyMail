@@ -6,12 +6,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const http = require('http');
 const { Server } = require('socket.io');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
 app.use(bodyParser.json());
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
@@ -67,23 +71,15 @@ app.get('/api/inbox', auth, async (req, res) => {
   res.json(r.rows);
 });
 
-// WebRTC signaling with socket.io
+// WebRTC signaling
 io.on('connection', (socket) => {
-  socket.on('join', (username) => {
+  socket.on('register_socket', (username) => {
     socket.username = username;
-  });
-
-  socket.on('call', (data) => {
-    io.to(data.to).emit('incoming_call', { from: socket.username });
+    socket.join(username);
   });
 
   socket.on('signal', (data) => {
     io.to(data.to).emit('signal', { from: socket.username, signal: data.signal });
-  });
-
-  socket.on('register_socket', (username) => {
-    socket.username = username;
-    socket.join(username);
   });
 
   socket.on('end_call', (data) => {
