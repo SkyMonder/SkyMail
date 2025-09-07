@@ -1,46 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SkyMail</title>
+  <title>SkyMail Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>SkyMail</h1>
-  <div>
-    <input id="username" placeholder="Username">
-    <input id="password" placeholder="Password" type="password">
-    <button onclick="register()">Register</button>
-    <button onclick="login()">Login</button>
+  <div class="container">
+    <h1>SkyMail</h1>
+    <div id="auth">
+      <input id="username" placeholder="Username">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <button onclick="register()">Register</button>
+    </div>
   </div>
-  <h2>Compose</h2>
-  <div>
-    <input id="to" placeholder="Recipient username">
-    <input id="subject" placeholder="Subject">
-    <textarea id="body" placeholder="Message"></textarea>
-    <button onclick="send()">Send</button>
-  </div>
-  <h2>Inbox</h2>
-  <div id="inbox"></div>
-
-  <h2>Calls</h2>
-  <div>
-    <input id="callTo" placeholder="Call username">
-    <button onclick="startCall()">Call</button>
-  </div>
-  <div class="call-controls">
-    <button onclick="enableMic()">Mic On</button>
-    <button onclick="disableMic()">Mic Off</button>
-    <button onclick="enableCam()">Cam On</button>
-    <button onclick="disableCam()">Cam Off</button>
-    <button onclick="endCall()">End Call</button>
-  </div>
-  <div>
-    <video id="localVideo" autoplay muted></video>
-    <video id="remoteVideo" autoplay></video>
-  </div>
-
-  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-  <script src="call.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
